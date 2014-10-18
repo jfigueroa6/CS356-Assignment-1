@@ -1,19 +1,11 @@
 package edu.cs356.assignment1;
 
-public abstract class Question {
-	//=================================================================
-	//	Data Members
-	//=================================================================
-	private Answer options;
-	
+public interface Question {
 	//=================================================================
 	//	Methods
 	//=================================================================
-	protected Answer getAnswerOptions() {
-		return new Answer());
-	}
+	public Answer getAnswerOptions();
+	
+	public String getQuestion();
 
-	protected void setAnswerOptions(Answer options) {
-		this.options = options;
-	}
 }
