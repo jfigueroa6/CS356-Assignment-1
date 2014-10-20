@@ -1,16 +1,8 @@
 package edu.cs356.assignment1;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class MultiAnswer implements Answer {
-	//=================================================================
-	// Data Members
-	//=================================================================
-	private ArrayList<String> availableAnswers;	/**Store the available answers*/
-	private HashMap<String, Boolean> response;	/**Stores submitted response*/
-	
+public class MultiAnswer extends Answer {	
 	//=================================================================
 	// Constructor
 	//=================================================================
@@ -19,36 +11,16 @@ public class MultiAnswer implements Answer {
 	 * @param availableAnswers	Answers that are available
 	 */
 	public MultiAnswer(String availableAnswers) {
-		//Initialize available answers and initialize hashmap
-		this.availableAnswers = new ArrayList<String>(0);
-		response = new HashMap<String, Boolean>();	//Use default capacity of 16
-		
-		//Store the available answers into hashmap, so only those responses
-		//can be used. Like checking for incorrect input.
-		Scanner scanAnswers = new Scanner(availableAnswers);
-		scanAnswers.useDelimiter(",");	//Use ',' as a delimiter to separate answer options
-		while (scanAnswers.hasNext()) {
-			String temp = scanAnswers.next();
-			
-			//Remove leading and trailing whitespace
-			temp = temp.trim();
-			
-			//Store in hashmap and available answers
-			response.put(temp, false);
-			this.availableAnswers.add(temp);		
-		}
-		
-		//Close scanner
-		scanAnswers.close();
+		super(availableAnswers);
 	}
 	
 	/**
 	 * @return Gets the available answers.
 	 */
-	public ArrayList<String> getAvailableAnswers() {
-		return availableAnswers;
-	}
-
+	
+	//==================================================================
+	// Methods
+	//==================================================================
 	/**
 	 * The submitted response is checked to ensure that there are no unknown selections, and
 	 * changes the appropriate answer to true.
@@ -70,8 +42,8 @@ public class MultiAnswer implements Answer {
 			temp = temp.trim();
 			
 			//Find if the answer is acceptable, and make it true if it is.
-			if (response.containsKey(temp))
-				response.put(temp, true);
+			if (super.getResponse().containsKey(temp))
+				super.getResponse().put(temp, true);
 			//Answer unacceptable so close scanner and return false
 			else
 				successful = false;
@@ -80,14 +52,6 @@ public class MultiAnswer implements Answer {
 		//Submission was successful
 		scanResponse.close();
 		return successful;
-	}
-	
-	/**
-	 * Get the submitted response.
-	 * @return Returns response hash map
-	 */
-	public HashMap<String, Boolean> getResponse() {
-		return response;
 	}
 
 }
