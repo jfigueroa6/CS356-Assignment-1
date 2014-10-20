@@ -1,7 +1,5 @@
 package edu.cs356.assignment1;
 
-import java.util.Scanner;
-
 public class SingleAnswer extends Answer {
 	//=================================================================
 	// Constructor
@@ -25,15 +23,17 @@ public class SingleAnswer extends Answer {
 	 */
 	public boolean setResponse(String subResponse) {
 		boolean successful = true;		//Returns if there is an error with submission
-		//Create scanner to go through submitted response by using ',' as a delimiter
-		Scanner scanResponse = new Scanner(subResponse);
-		scanResponse.useDelimiter(",");
 		
-		//TODO: Single answer implementation
-		
+		//Since only a single answer, assume the entire string is the answer. Option should
+		//already exist in hash map. If not, then there is an error: either multiple answers
+		//or unknown option.
+		subResponse = subResponse.trim();
+		if (super.getResponse().containsKey(subResponse))
+			super.getResponse().put(subResponse, true);
+		else
+			successful = false;
 		
 		//Submission was successful
-		scanResponse.close();
 		return successful;
 	}
 }
