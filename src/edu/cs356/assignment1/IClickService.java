@@ -26,6 +26,20 @@ public class IClickService {
 		return currentQuestion;
 	}
 	
+	/**
+	 * Get how many submissions have been accepted.
+	 * @return Number of submissions
+	 */
+	public int getNumberSubmissions() {
+		return submissions.size();
+	}
+	
+	/**
+	 * Calculates the number of responses for each answer option. The results are 
+	 * stored in a hash map with the key being the answer option, and the value being
+	 * the number of responses for that answer.
+	 * @return	Hash Map holding results.
+	 */
 	public Map<String, Integer> getResultStatistics() {
 		//Create a hash map to store the results
 		Map<String, Integer> stats = new HashMap<String, Integer>();
