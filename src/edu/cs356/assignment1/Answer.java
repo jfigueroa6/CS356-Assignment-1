@@ -2,14 +2,16 @@ package edu.cs356.assignment1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public abstract class Answer {
 	//=================================================================
 	// Data Members
 	//=================================================================
-	private ArrayList<String> availableAnswers;	/**Store the available answers*/
-	private HashMap<String, Boolean> response;	/**Stores submitted response*/
+	private List<String> availableAnswers;	/**Store the available answers*/
+	private Map<String, Boolean> response;	/**Stores submitted response*/
 	
 	//=================================================================
 	// Constructor
@@ -46,7 +48,7 @@ public abstract class Answer {
 	 * get available answer choices.
 	 * @return	Available answers.
 	 */
-	public ArrayList<String> getAvailableAnswers() {
+	public List<String> getAvailableAnswers() {
 		return availableAnswers;
 	}
 	
@@ -60,7 +62,7 @@ public abstract class Answer {
 	 * get submitted response
 	 * @return	Submitted response
 	 */
-	public HashMap<String, Boolean> getResponse() {
+	public Map<String, Boolean> getResponse() {
 		return response;
 	}
 }
